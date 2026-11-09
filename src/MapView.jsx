@@ -10,7 +10,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-export default function MapView({ selectedId, onSelect }) {
+export default function MapView({ selectedId, onSelect, onDoubleClick }) {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const layersRef = useRef({});
@@ -54,6 +54,7 @@ export default function MapView({ selectedId, onSelect }) {
             weight: 2,
           }).addTo(map);
           poly.on('click', () => onSelect?.(l));
+          poly.on('dblclick', (e) => { L.DomEvent.stopPropagation(e); onDoubleClick?.(l); });
 
           const marker = L.circleMarker([l.lat, l.lng], {
             radius: 8,
@@ -63,6 +64,7 @@ export default function MapView({ selectedId, onSelect }) {
             fillOpacity: 0.95,
           }).addTo(map);
           marker.on('click', () => onSelect?.(l));
+          marker.on('dblclick', (e) => { L.DomEvent.stopPropagation(e); onDoubleClick?.(l); });
 
           layers[l.id] = { poly, marker };
         } catch (e) {

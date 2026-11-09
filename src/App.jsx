@@ -16,6 +16,7 @@ class ErrorBoundary extends Component {
 export default function App() {
   const [tab, setTab] = useState('map');
   const [selected, setSelected] = useState(null);
+  const [mockupFor, setMockupFor] = useState(null);
 
   return (
     <ErrorBoundary>
@@ -27,18 +28,18 @@ export default function App() {
         {tab === 'map' ? (
           <>
             <div className="map-container">
-              <MapView selectedId={selected?.id} onSelect={setSelected} />
+              <MapView selectedId={selected?.id} onSelect={setSelected} onDoubleClick={setMockupFor} />
             </div>
             <div className="bottom">
               <div className="list-panel">
                 <h1>Land Candidates (2+ acres)</h1>
-                <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details.</p>
+                <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details. Double-click for architecture mockups.</p>
                 <div id="listings">
                   {listings.map(l => {
                     const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);
                     const distCW = haversine(l.lat, l.lng, CAUSEWAY[0], CAUSEWAY[1]);
                     return (
-                      <div key={l.id} className={`listing ${selected?.id === l.id ? 'active' : ''}`} onClick={() => setSelected(l)}>
+                      <div key={l.id} className={`listing ${selected?.id === l.id ? 'active' : ''}`} onClick={() => setSelected(l)} onDoubleClick={() => setMockupFor(l)}>
                         <h3>{l.name}</h3>
                         <div className="meta"><span className="size">{l.size}</span> · <span className="price">{toSGD(l.price)} ({l.price})</span></div>
                         <div className="meta">{l.zoning} · {l.tenure}</div>
@@ -57,6 +58,24 @@ export default function App() {
           <Concepts />
         )}
       </div>
+
+      {mockupFor && (
+        <div className="modal-overlay" onClick={() => setMockupFor(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setMockupFor(null)}>×</button>
+            <h2>Architecture concepts for {mockupFor.name}</h2>
+            <p className="rate-note">Illustrative only — not a design for this specific plot. Double-click any listing or map shape to open.</p>
+            <div className="concept-grid">
+              <div className="concept-card"><img src="/concepts/aerial.jpg" alt="Aerial courtyard" /><h3>Courtyard Cluster</h3><p>7 family pavilions + central hall + elder suite.</p></div>
+              <div className="concept-card"><img src="/concepts/aerial2.jpg" alt="Aerial alternate" /><h3>Alternative Aerial</h3><p>Connected pavilions with shared garden and security wall.</p></div>
+              <div className="concept-card"><img src="/concepts/plan.jpg" alt="Site plan" /><h3>Site Plan</h3><p>Top-down layout with breezeways and zero-step elder unit.</p></div>
+              <div className="concept-card"><img src="/concepts/interior.jpg" alt="Communal living" /><h3>Communal Living</h3><p>Open-air central pavilion for shared meals.</p></div>
+              <div className="concept-card"><img src="/concepts/interior2.jpg" alt="Interior alternate" /><h3>Covered Dining</h3><p>Timber hall opening to private suites and garden.</p></div>
+              <div className="concept-card"><img src="/concepts/elevation.jpg" alt="Elevation" /><h3>Pavilion Elevation</h3><p>High ceilings, deep overhangs, cross ventilation.</p></div>
+            </div>
+          </div>
+        </div>
+      )}
     </ErrorBoundary>
   );
 }

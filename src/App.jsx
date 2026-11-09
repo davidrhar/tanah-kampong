@@ -64,15 +64,8 @@ export default function App() {
           <div className="modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setMockupFor(null)}>×</button>
             <h2>Architecture concepts for {mockupFor.name}</h2>
-            <p className="rate-note">Illustrative only — not a design for this specific plot. Double-click any listing or map shape to open.</p>
-            <div className="concept-grid">
-              <div className="concept-card"><img src="/concepts/aerial.jpg" alt="Aerial courtyard" /><h3>Courtyard Cluster</h3><p>7 family pavilions + central hall + elder suite.</p></div>
-              <div className="concept-card"><img src="/concepts/aerial2.jpg" alt="Aerial alternate" /><h3>Alternative Aerial</h3><p>Connected pavilions with shared garden and security wall.</p></div>
-              <div className="concept-card"><img src="/concepts/plan.jpg" alt="Site plan" /><h3>Site Plan</h3><p>Top-down layout with breezeways and zero-step elder unit.</p></div>
-              <div className="concept-card"><img src="/concepts/interior.jpg" alt="Communal living" /><h3>Communal Living</h3><p>Open-air central pavilion for shared meals.</p></div>
-              <div className="concept-card"><img src="/concepts/interior2.jpg" alt="Interior alternate" /><h3>Covered Dining</h3><p>Timber hall opening to private suites and garden.</p></div>
-              <div className="concept-card"><img src="/concepts/elevation.jpg" alt="Elevation" /><h3>Pavilion Elevation</h3><p>High ceilings, deep overhangs, cross ventilation.</p></div>
-            </div>
+            <p className="rate-note">Plot size: {mockupFor.size}. Concepts scaled to this acreage. Illustrative only.</p>
+            <SizeAwareMockups size={mockupFor.size} />
           </div>
         </div>
       )}
@@ -120,6 +113,52 @@ function Concepts() {
           <h3>Communal Living</h3>
           <p>Open-air central pavilion for shared meals. Individual suites open onto covered corridors.</p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function sizeCategory(sizeStr) {
+  const n = parseFloat(sizeStr) || 2;
+  if (n <= 2.5) return 'compact';
+  if (n <= 5.5) return 'medium';
+  return 'large';
+}
+
+function SizeAwareMockups({ size }) {
+  const cat = sizeCategory(size);
+  const sets = {
+    compact: [
+      { src: '/concepts/compact-2ac.jpg', title: 'Compact 2-acre layout', desc: 'Tight courtyard cluster — 4–5 pavilions + elder suite. Efficient footprint for smaller plots.' },
+      { src: '/concepts/interior2.jpg', title: 'Shared covered hall', desc: 'Central dining and living that keeps the compound feeling like one household.' },
+      { src: '/concepts/elevation.jpg', title: 'Pavilion section', desc: 'High ceilings and deep overhangs for tropical comfort.' },
+    ],
+    medium: [
+      { src: '/concepts/medium-4ac.jpg', title: 'Medium 4–5 acre courtyard', desc: '7 family pavilions + communal hall with generous garden and water feature.' },
+      { src: '/concepts/aerial.jpg', title: 'Courtyard cluster aerial', desc: 'Connected breezeways, security perimeter, elder suite at ground level.' },
+      { src: '/concepts/interior.jpg', title: 'Communal living', desc: 'Open-air central pavilion for shared meals.' },
+      { src: '/concepts/plan.jpg', title: 'Site plan', desc: 'Private wings + shared core + zero-step elder unit.' },
+    ],
+    large: [
+      { src: '/concepts/large-8ac.jpg', title: 'Large 8-acre linear spine', desc: 'Spacious layout with room for orchards, recreation, and future expansion.' },
+      { src: '/concepts/aerial2.jpg', title: 'Alternative cluster', desc: 'Still connected as one household, with more breathing room between pavilions.' },
+      { src: '/concepts/size-comparison.jpg', title: 'Size comparison', desc: 'How the same programme scales from 2 acres to 8 acres.' },
+    ],
+  };
+  const items = sets[cat] || sets.medium;
+  return (
+    <div className="concept-grid">
+      {items.map((it, i) => (
+        <div key={i} className="concept-card">
+          <img src={it.src} alt={it.title} />
+          <h3>{it.title}</h3>
+          <p>{it.desc}</p>
+        </div>
+      ))}
+      <div className="concept-card" style={{ background: '#f8f9fa' }}>
+        <img src="/concepts/size-comparison.jpg" alt="Comparison" />
+        <h3>All sizes compared</h3>
+        <p>Compact (≤2.5 ac), Medium (2.5–5.5 ac), Large (>5.5 ac). Layouts stay linked so the compound reads as one household.</p>
       </div>
     </div>
   );

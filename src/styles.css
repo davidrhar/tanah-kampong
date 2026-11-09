@@ -68,3 +68,13 @@ h1 { font-size: 18px; margin: 0 0 8px; color: #2c3e50; }
   position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
   color: #ddd; font-size: 13px; margin: 0;
 }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center;
+  padding: 8px 0 12px; font-size: 13px; border-bottom: 1px solid #eee; margin-bottom: 8px;
+}
+.filters label { display: flex; align-items: center; gap: 6px; }
+.filters select, .filters input[type="number"] {
+  padding: 4px 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px;
+}
+.filters .chk { cursor: pointer; }

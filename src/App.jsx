@@ -1,4 +1,4 @@
-import { useState, Component } from 'react';
+import React, { useState, Component, useMemo } from 'react';
 import MapView from './MapView.jsx';
 import { listings, toSGD, haversine, SECOND_LINK, CAUSEWAY } from './listings.js';
 
@@ -16,9 +16,35 @@ class ErrorBoundary extends Component {
 export default function App() {
   const [tab, setTab] = useState('map');
   const [selected, setSelected] = useState(null);
+  const [sortBy, setSortBy] = useState('size');
+  const [sortDir, setSortDir] = useState('desc');
+  const [minAcres, setMinAcres] = useState(0);
+  const [residentialOnly, setResidentialOnly] = useState(false);
   const [mockupFor, setMockupFor] = useState(null);
   const [fullGallery, setFullGallery] = useState(false);
   const [zoomSrc, setZoomSrc] = useState(null);
+
+  const sortedListings = useMemo(() => {
+    let arr = listings.filter(l => {
+      const acres = parseFloat(l.size) || 0;
+      if (acres < minAcres) return false;
+      if (residentialOnly && !/residential/i.test(l.zoning || '')) return false;
+      return true;
+    });
+    const parsePsf = s => parseFloat(String(s).replace(/[^0-9.]/g, '')) || 0;
+    const parsePrice = s => parseFloat(String(s).replace(/[^0-9.]/g, '')) || 0;
+    arr.sort((a, b) => {
+      let va, vb;
+      if (sortBy === 'size') { va = parseFloat(a.size) || 0; vb = parseFloat(b.size) || 0; }
+      else if (sortBy === 'psf') { va = parsePsf(a.psf); vb = parsePsf(b.psf); }
+      else if (sortBy === 'price') { va = parsePrice(a.price); vb = parsePrice(b.price); }
+      else if (sortBy === 'distSL') { va = parseFloat(haversine(a.lat, a.lng, SECOND_LINK[0], SECOND_LINK[1])); vb = parseFloat(haversine(b.lat, b.lng, SECOND_LINK[0], SECOND_LINK[1])); }
+      else if (sortBy === 'distCW') { va = parseFloat(haversine(a.lat, a.lng, CAUSEWAY[0], CAUSEWAY[1])); vb = parseFloat(haversine(b.lat, b.lng, CAUSEWAY[0], CAUSEWAY[1])); }
+      else { va = 0; vb = 0; }
+      return sortDir === 'asc' ? va - vb : vb - va;
+    });
+    return arr;
+  }, [sortBy, sortDir, minAcres, residentialOnly]);
 
   return (
     <ErrorBoundary>
@@ -36,8 +62,37 @@ export default function App() {
               <div className="list-panel">
                 <h1>Land Candidates (2+ acres)</h1>
                 <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details. Double-click for size-specific concepts. Non-locals: prefer residential-zoned / international lots (RM1M+ with state consent). Agricultural titles restricted.</p>
+                
+                <div className="filters">
+                  <label>
+                    Sort
+                    <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                      <option value="size">Land size</option>
+                      <option value="psf">PSF (RM)</option>
+                      <option value="price">Total price</option>
+                      <option value="distSL">Distance to 2nd Link</option>
+                      <option value="distCW">Distance to Causeway</option>
+                    </select>
+                  </label>
+                  <label>
+                    Order
+                    <select value={sortDir} onChange={e => setSortDir(e.target.value)}>
+                      <option value="desc">Largest / highest first</option>
+                      <option value="asc">Smallest / lowest first</option>
+                    </select>
+                  </label>
+                  <label>
+                    Min acres
+                    <input type="number" min="0" step="0.5" value={minAcres} onChange={e => setMinAcres(parseFloat(e.target.value) || 0)} style={{width:60}} />
+                  </label>
+                  <label className="chk">
+                    <input type="checkbox" checked={residentialOnly} onChange={e => setResidentialOnly(e.target.checked)} />
+                    Residential only
+                  </label>
+                </div>
+
                 <div id="listings">
-                  {listings.map(l => {
+                  {sortedListings.map(l => {
                     const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);
                     const distCW = haversine(l.lat, l.lng, CAUSEWAY[0], CAUSEWAY[1]);
                     return (

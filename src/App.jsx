@@ -1,55 +1,73 @@
-import { useState } from 'react';
+import { useState, Component } from 'react';
 import MapView from './MapView.jsx';
 import { listings, toSGD, haversine, SECOND_LINK, CAUSEWAY } from './listings.js';
+
+class ErrorBoundary extends Component {
+  state = { hasError: false, error: null };
+  static getDerivedStateFromError(error) { return { hasError: true, error }; }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: 20, fontFamily: 'system-ui' }}>
+          <h2>Something went wrong</h2>
+          <pre style={{ whiteSpace: 'pre-wrap', color: '#c0392b' }}>{String(this.state.error)}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export default function App() {
   const [tab, setTab] = useState('map');
   const [selected, setSelected] = useState(null);
 
   return (
-    <div className="app">
-      <div className="tabs">
-        <button className={tab === 'map' ? 'active' : ''} onClick={() => setTab('map')}>Map & Listings ({listings.length})</button>
-        <button className={tab === 'concepts' ? 'active' : ''} onClick={() => setTab('concepts')}>Compound Concepts</button>
-      </div>
+    <ErrorBoundary>
+      <div className="app">
+        <div className="tabs">
+          <button className={tab === 'map' ? 'active' : ''} onClick={() => setTab('map')}>Map & Listings ({listings.length})</button>
+          <button className={tab === 'concepts' ? 'active' : ''} onClick={() => setTab('concepts')}>Compound Concepts</button>
+        </div>
 
-      {tab === 'map' ? (
-        <>
-          <div className="map-container">
-            <MapView selectedId={selected?.id} onSelect={setSelected} />
-          </div>
-          <div className="bottom">
-            <div className="list-panel">
-              <h1>Land Candidates (2+ acres)</h1>
-              <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details.</p>
-              <div id="listings">
-                {listings.map(l => {
-                  const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);
-                  const distCW = haversine(l.lat, l.lng, CAUSEWAY[0], CAUSEWAY[1]);
-                  return (
-                    <div
-                      key={l.id}
-                      className={`listing ${selected?.id === l.id ? 'active' : ''}`}
-                      onClick={() => setSelected(l)}
-                    >
-                      <h3>{l.name}</h3>
-                      <div className="meta"><span className="size">{l.size}</span> · <span className="price">{toSGD(l.price)} ({l.price})</span></div>
-                      <div className="meta">{l.zoning} · {l.tenure}</div>
-                      <div className="dist">2nd Link: {distSL} km · Causeway: {distCW} km</div>
-                    </div>
-                  );
-                })}
+        {tab === 'map' ? (
+          <>
+            <div className="map-container">
+              <MapView selectedId={selected?.id} onSelect={setSelected} />
+            </div>
+            <div className="bottom">
+              <div className="list-panel">
+                <h1>Land Candidates (2+ acres)</h1>
+                <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details.</p>
+                <div id="listings">
+                  {listings.map(l => {
+                    const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);
+                    const distCW = haversine(l.lat, l.lng, CAUSEWAY[0], CAUSEWAY[1]);
+                    return (
+                      <div
+                        key={l.id}
+                        className={`listing ${selected?.id === l.id ? 'active' : ''}`}
+                        onClick={() => setSelected(l)}
+                      >
+                        <h3>{l.name}</h3>
+                        <div className="meta"><span className="size">{l.size}</span> · <span className="price">{toSGD(l.price)} ({l.price})</span></div>
+                        <div className="meta">{l.zoning} · {l.tenure}</div>
+                        <div className="dist">2nd Link: {distSL} km · Causeway: {distCW} km</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="detail-panel">
+                {selected ? <Detail listing={selected} /> : <div className="placeholder">Select a listing or click a polygon on the map.</div>}
               </div>
             </div>
-            <div className="detail-panel">
-              {selected ? <Detail listing={selected} /> : <div className="placeholder">Select a listing or click a polygon on the map.</div>}
-            </div>
-          </div>
-        </>
-      ) : (
-        <Concepts />
-      )}
-    </div>
+          </>
+        ) : (
+          <Concepts />
+        )}
+      </div>
+    </ErrorBoundary>
   );
 }
 

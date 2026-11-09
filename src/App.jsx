@@ -17,6 +17,8 @@ export default function App() {
   const [tab, setTab] = useState('map');
   const [selected, setSelected] = useState(null);
   const [mockupFor, setMockupFor] = useState(null);
+  const [fullGallery, setFullGallery] = useState(false);
+  const [zoomSrc, setZoomSrc] = useState(null);
 
   return (
     <ErrorBoundary>
@@ -55,7 +57,7 @@ export default function App() {
             </div>
           </>
         ) : (
-          <Concepts />
+          <Concepts onOpenGallery={() => setFullGallery(true)} />
         )}
       </div>
 
@@ -63,10 +65,27 @@ export default function App() {
         <div className="modal-overlay" onClick={() => setMockupFor(null)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setMockupFor(null)}>×</button>
-            <h2>Architecture concepts for {mockupFor.name}</h2>
-            <p className="rate-note">Plot size: {mockupFor.size}. Concepts scaled to this acreage. Illustrative only.</p>
-            <SizeAwareMockups size={mockupFor.size} />
+            <h2>Concepts for {mockupFor.name}</h2>
+            <p className="rate-note">Limited to this plot’s size ({mockupFor.size}). Click any image to zoom.</p>
+            <SizeAwareMockups size={mockupFor.size} onZoom={setZoomSrc} />
           </div>
+        </div>
+      )}
+      {fullGallery && (
+        <div className="modal-overlay" onClick={() => setFullGallery(false)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setFullGallery(false)}>×</button>
+            <h2>Full Compound Concepts</h2>
+            <p className="rate-note">All sizes and views. Click any image to zoom in. Double-click cards on the Concepts tab to open this.</p>
+            <FullGallery onZoom={setZoomSrc} />
+          </div>
+        </div>
+      )}
+      {zoomSrc && (
+        <div className="zoom-overlay" onClick={() => setZoomSrc(null)}>
+          <img src={zoomSrc} alt="Zoomed concept" onClick={e => e.stopPropagation()} />
+          <button className="zoom-close" onClick={() => setZoomSrc(null)}>×</button>
+          <p className="zoom-hint">Click outside or × to close</p>
         </div>
       )}
     </ErrorBoundary>
@@ -92,12 +111,13 @@ function Detail({ listing: l }) {
   );
 }
 
-function Concepts() {
+function Concepts({ onOpenGallery }) {
   return (
     <div className="concepts">
       <h1>Multi-generational Compound Concepts</h1>
-      <p>Illustrative concepts for a connected single-household compound holding 7+ families plus a dedicated elder/caretaker unit.</p>
-      <div className="concept-grid">
+      <p>Illustrative concepts for a connected single-household compound. Double-click any card (or the button below) to open the full gallery and zoom in.</p>
+      <button className="btn" style={{marginBottom:16}} onClick={onOpenGallery}>Open full gallery</button>
+      <div className="concept-grid" onDoubleClick={onOpenGallery}>
         <div className="concept-card">
           <img src="/concepts/3d-medium.jpg" alt="3D Medium" />
           <h3>3D Courtyard Model</h3>
@@ -125,7 +145,7 @@ function sizeCategory(sizeStr) {
   return 'large';
 }
 
-function SizeAwareMockups({ size }) {
+function SizeAwareMockups({ size, onZoom }) {
   const cat = sizeCategory(size);
   const sets = {
     compact: [
@@ -150,7 +170,7 @@ function SizeAwareMockups({ size }) {
     <div className="concept-grid">
       {items.map((it, i) => (
         <div key={i} className="concept-card">
-          <img src={it.src} alt={it.title} />
+          <img src={it.src} alt={it.title} onClick={() => onZoom?.(it.src)} style={{cursor:'zoom-in'}} />
           <h3>{it.title}</h3>
           <p>{it.desc}</p>
         </div>
@@ -160,6 +180,34 @@ function SizeAwareMockups({ size }) {
         <h3>All sizes compared</h3>
         <p>Compact (≤2.5 ac), Medium (2.5–5.5 ac), Large (>5.5 ac). Layouts stay linked so the compound reads as one household.</p>
       </div>
+    </div>
+  );
+}
+
+function FullGallery({ onZoom }) {
+  const all = [
+    { src: '/concepts/3d-compact.jpg', title: '3D Compact (≤2.5 ac)', desc: 'Tight courtyard cluster for smaller plots.' },
+    { src: '/concepts/3d-medium.jpg', title: '3D Medium (4–5 ac)', desc: '7-pavilion courtyard with central hall.' },
+    { src: '/concepts/3d-large.jpg', title: '3D Large (8 ac)', desc: 'Linear spine with expansion space.' },
+    { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'Structure, rooms and ventilation.' },
+    { src: '/concepts/aerial.jpg', title: 'Aerial courtyard', desc: 'How the cluster sits on the land.' },
+    { src: '/concepts/aerial2.jpg', title: 'Alternative aerial', desc: 'Connected pavilions with shared garden.' },
+    { src: '/concepts/interior.jpg', title: 'Communal living', desc: 'Open-air central pavilion.' },
+    { src: '/concepts/interior2.jpg', title: 'Covered dining', desc: 'Timber hall opening to garden.' },
+    { src: '/concepts/compact-2ac.jpg', title: 'Compact aerial', desc: 'Efficient 2-acre layout.' },
+    { src: '/concepts/medium-4ac.jpg', title: 'Medium aerial', desc: 'Generous courtyard cluster.' },
+    { src: '/concepts/large-8ac.jpg', title: 'Large aerial', desc: 'Spacious linear layout.' },
+    { src: '/concepts/size-comparison.jpg', title: 'Size comparison', desc: 'How the programme scales.' },
+  ];
+  return (
+    <div className="concept-grid">
+      {all.map((it, i) => (
+        <div key={i} className="concept-card">
+          <img src={it.src} alt={it.title} onClick={() => onZoom?.(it.src)} style={{cursor:'zoom-in'}} />
+          <h3>{it.title}</h3>
+          <p>{it.desc}</p>
+        </div>
+      ))}
     </div>
   );
 }

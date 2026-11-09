@@ -1,3 +1,5 @@
+export const MYR_TO_SGD = 0.3155;
+
 export const listings = [
   { id: 1, name: "Puteri Harbour Seaside 2.22 ac", lat: 1.417, lng: 103.658, size: "2.22 acres", price: "RM 14.5M", psf: "~RM 150", tenure: "Freehold, international lot", zoning: "Residential (agri title)", utilities: "Electric + water available", notes: "Near Emerald Bay / seaside, rectangular, forest topo. Premium setting.", color: "#e74c3c", link: "https://www.edgeprop.my/listing/sale/3775762/johor/puteri_harbour/landed/residentialland/puteri-harbour-iskandar-puteri-nusajaya-johor-2.22-acres-zoning-residential-land-for-sale" },
   { id: 2, name: "Tanjung Tebing Runtoh 2.3 ac", lat: 1.412, lng: 103.652, size: "2.3 acres", price: "RM 15.0M", psf: "RM 150", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Near Puteri Harbour. Rectangular.", color: "#e74c3c", link: "https://www.edgeprop.my/listing/sale/3764647/johor/landed/residentialland/2.3-acres-zoning-residential-agriculture-land-tanjung-tebing-runtoh-iskandar-puteri-johor" },

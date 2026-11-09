@@ -7,12 +7,7 @@ class ErrorBoundary extends Component {
   static getDerivedStateFromError(error) { return { hasError: true, error }; }
   render() {
     if (this.state.hasError) {
-      return (
-        <div style={{ padding: 20, fontFamily: 'system-ui' }}>
-          <h2>Something went wrong</h2>
-          <pre style={{ whiteSpace: 'pre-wrap', color: '#c0392b' }}>{String(this.state.error)}</pre>
-        </div>
-      );
+      return <div style={{padding:20}}><h2>Error</h2><pre>{String(this.state.error)}</pre></div>;
     }
     return this.props.children;
   }
@@ -29,7 +24,6 @@ export default function App() {
           <button className={tab === 'map' ? 'active' : ''} onClick={() => setTab('map')}>Map & Listings ({listings.length})</button>
           <button className={tab === 'concepts' ? 'active' : ''} onClick={() => setTab('concepts')}>Compound Concepts</button>
         </div>
-
         {tab === 'map' ? (
           <>
             <div className="map-container">
@@ -44,11 +38,7 @@ export default function App() {
                     const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);
                     const distCW = haversine(l.lat, l.lng, CAUSEWAY[0], CAUSEWAY[1]);
                     return (
-                      <div
-                        key={l.id}
-                        className={`listing ${selected?.id === l.id ? 'active' : ''}`}
-                        onClick={() => setSelected(l)}
-                      >
+                      <div key={l.id} className={`listing ${selected?.id === l.id ? 'active' : ''}`} onClick={() => setSelected(l)}>
                         <h3>{l.name}</h3>
                         <div className="meta"><span className="size">{l.size}</span> · <span className="price">{toSGD(l.price)} ({l.price})</span></div>
                         <div className="meta">{l.zoning} · {l.tenure}</div>
@@ -94,35 +84,23 @@ function Concepts() {
   return (
     <div className="concepts">
       <h1>Multi-generational Compound Concepts</h1>
-      <p>Illustrative concepts for a connected single-household compound holding 7+ families plus a dedicated elder/caretaker unit. Designed for tropical Johor climate with passive ventilation, covered breezeways, and one-title compliance in mind.</p>
-
+      <p>Illustrative concepts for a connected single-household compound holding 7+ families plus a dedicated elder/caretaker unit.</p>
       <div className="concept-grid">
         <div className="concept-card">
-          <img src="/concepts/aerial.jpg" alt="Aerial view of courtyard cluster compound" />
+          <img src="/concepts/aerial.jpg" alt="Aerial" />
           <h3>Courtyard Cluster (Aerial)</h3>
-          <p>7 private family pavilions arranged around a central shared garden and communal hall. Covered walkways connect everything. Ground-floor elder suite with zero-step access. Security perimeter, solar-ready roofs, tropical planting.</p>
+          <p>7 private family pavilions around a central shared garden. Covered walkways connect everything. Ground-floor elder suite.</p>
         </div>
         <div className="concept-card">
-          <img src="/concepts/plan.jpg" alt="Site plan and concept sketch" />
+          <img src="/concepts/plan.jpg" alt="Plan" />
           <h3>Site Plan & Layout</h3>
-          <p>Top-down and isometric views showing private wings, communal kitchen/living, shared garden, and the separate-yet-linked elder/caretaker suite. Key climate responses: cross ventilation, deep overhangs, permeable surfaces.</p>
+          <p>Top-down and isometric views of private wings, communal kitchen/living, and elder/caretaker suite.</p>
         </div>
         <div className="concept-card">
-          <img src="/concepts/interior.jpg" alt="Communal living space" />
+          <img src="/concepts/interior.jpg" alt="Interior" />
           <h3>Communal Living</h3>
-          <p>Open-air central pavilion for shared meals. Individual family suites open onto covered corridors. Elder unit visible in the background with accessible approach. Warm timber and rattan materials suited to the climate.</p>
+          <p>Open-air central pavilion for shared meals. Individual suites open onto covered corridors.</p>
         </div>
-      </div>
-
-      <div className="notes">
-        <h3>Design notes for single-household compliance</h3>
-        <ul>
-          <li>All units linked by covered, open-sided breezeways so the development reads as one continuous household rather than separate dwellings.</li>
-          <li>Elder/caretaker suite is ground-floor, zero-step, with visual connection to the central garden.</li>
-          <li>Private family wings have individual entries but share the central kitchen, dining, and garden.</li>
-          <li>Tropical passive design: high ceilings, deep eaves, cross-ventilation, permeable paving.</li>
-          <li>These are concept illustrations only — actual layout must be validated against the chosen plot’s shape, zoning, and Johor planning guidelines.</li>
-        </ul>
       </div>
     </div>
   );

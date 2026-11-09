@@ -47,8 +47,9 @@
     const MYR_TO_SGD = 0.3155;
 
     function toSGD(rmString) {
+      // Prices are already expressed in millions (e.g. "RM 14.5M")
       const num = parseFloat(rmString.replace(/[^0-9.]/g, '')) || 0;
-      const sgd = (num * MYR_TO_SGD / 1e6).toFixed(2);
+      const sgd = (num * MYR_TO_SGD).toFixed(2);
       return `S$${sgd}M`;
     }
 

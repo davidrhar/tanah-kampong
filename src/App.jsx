@@ -149,17 +149,20 @@ function SizeAwareMockups({ size, onZoom }) {
   const cat = sizeCategory(size);
   const sets = {
     compact: [
+      { src: '/concepts/3d-driveway-compact.jpg', title: '3D Compact with Driveway & Parking', desc: 'Isometric view showing paved driveway, covered carport for several cars, and gate access.' },
       { src: '/concepts/3d-compact.jpg', title: '3D Compact Model (≤2.5 ac)', desc: 'Isometric 3D view of tight courtyard cluster — 4–5 connected pavilions + elder suite.' },
       { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'How a single tropical pavilion is structured: roof, walls, rooms, ventilation.' },
       { src: '/concepts/interior2.jpg', title: 'Shared covered hall', desc: 'Central dining that keeps the compound feeling like one household.' },
     ],
     medium: [
+      { src: '/concepts/3d-driveway-medium.jpg', title: '3D Medium with Driveway & Parking', desc: 'Courtyard cluster with driveway loop and dedicated parking bay under carport.' },
       { src: '/concepts/3d-medium.jpg', title: '3D Medium Model (4–5 ac)', desc: 'Isometric 3D view of 7 pavilions + central hall and water feature.' },
       { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'Structural layers of a multi-generational tropical pavilion.' },
       { src: '/concepts/aerial.jpg', title: 'Aerial context', desc: 'How the 3D cluster sits on the land with security wall and garden.' },
       { src: '/concepts/interior.jpg', title: 'Communal living', desc: 'Open-air central pavilion for shared meals.' },
     ],
     large: [
+      { src: '/concepts/3d-driveway-large.jpg', title: '3D Large with Driveway & Parking', desc: 'Linear spine with main driveway, parking court near entrance, and secondary parking by elder pavilion.' },
       { src: '/concepts/3d-large.jpg', title: '3D Large Model (8 ac)', desc: 'Isometric 3D view of linear spine with expansion space and elder pavilion.' },
       { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'How individual pavilions are built and ventilated.' },
       { src: '/concepts/large-8ac.jpg', title: 'Aerial of large layout', desc: 'Spacious site with orchards, recreation, and future growth area.' },
@@ -190,6 +193,10 @@ function FullGallery({ onZoom }) {
     { src: '/concepts/3d-medium.jpg', title: '3D Medium (4–5 ac)', desc: '7-pavilion courtyard with central hall.' },
     { src: '/concepts/3d-large.jpg', title: '3D Large (8 ac)', desc: 'Linear spine with expansion space.' },
     { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'Structure, rooms and ventilation.' },
+    { src: '/concepts/3d-driveway-compact.jpg', title: 'Driveway & Parking (Compact)', desc: 'Covered carport and access road.' },
+    { src: '/concepts/3d-driveway-medium.jpg', title: 'Driveway & Parking (Medium)', desc: 'Driveway loop with dedicated parking bay.' },
+    { src: '/concepts/3d-driveway-large.jpg', title: 'Driveway & Parking (Large)', desc: 'Main driveway and parking court.' },
+    { src: '/concepts/driveway-detail.jpg', title: 'Entrance & Carport Detail', desc: 'Gatehouse, paved approach, covered parking.' },
     { src: '/concepts/aerial.jpg', title: 'Aerial courtyard', desc: 'How the cluster sits on the land.' },
     { src: '/concepts/aerial2.jpg', title: 'Alternative aerial', desc: 'Connected pavilions with shared garden.' },
     { src: '/concepts/interior.jpg', title: 'Communal living', desc: 'Open-air central pavilion.' },

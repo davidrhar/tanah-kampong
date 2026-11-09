@@ -99,19 +99,19 @@ function Concepts() {
       <p>Illustrative concepts for a connected single-household compound holding 7+ families plus a dedicated elder/caretaker unit.</p>
       <div className="concept-grid">
         <div className="concept-card">
-          <img src="/concepts/aerial.jpg" alt="Aerial" />
-          <h3>Courtyard Cluster (Aerial)</h3>
-          <p>7 private family pavilions around a central shared garden. Covered walkways connect everything. Ground-floor elder suite.</p>
+          <img src="/concepts/3d-medium.jpg" alt="3D Medium" />
+          <h3>3D Courtyard Model</h3>
+          <p>Isometric 3D visualization of the connected pavilion cluster with central hall and garden.</p>
         </div>
         <div className="concept-card">
-          <img src="/concepts/plan.jpg" alt="Plan" />
-          <h3>Site Plan & Layout</h3>
-          <p>Top-down and isometric views of private wings, communal kitchen/living, and elder/caretaker suite.</p>
+          <img src="/concepts/3d-exploded.jpg" alt="3D Exploded" />
+          <h3>3D Pavilion Exploded</h3>
+          <p>Structural 3D diagram showing roof, walls, rooms and tropical ventilation paths.</p>
         </div>
         <div className="concept-card">
-          <img src="/concepts/interior.jpg" alt="Interior" />
-          <h3>Communal Living</h3>
-          <p>Open-air central pavilion for shared meals. Individual suites open onto covered corridors.</p>
+          <img src="/concepts/3d-large.jpg" alt="3D Large" />
+          <h3>3D Large Layout</h3>
+          <p>Linear spine model for larger plots with expansion space and separate elder pavilion.</p>
         </div>
       </div>
     </div>
@@ -129,20 +129,20 @@ function SizeAwareMockups({ size }) {
   const cat = sizeCategory(size);
   const sets = {
     compact: [
-      { src: '/concepts/compact-2ac.jpg', title: 'Compact 2-acre layout', desc: 'Tight courtyard cluster — 4–5 pavilions + elder suite. Efficient footprint for smaller plots.' },
-      { src: '/concepts/interior2.jpg', title: 'Shared covered hall', desc: 'Central dining and living that keeps the compound feeling like one household.' },
-      { src: '/concepts/elevation.jpg', title: 'Pavilion section', desc: 'High ceilings and deep overhangs for tropical comfort.' },
+      { src: '/concepts/3d-compact.jpg', title: '3D Compact Model (≤2.5 ac)', desc: 'Isometric 3D view of tight courtyard cluster — 4–5 connected pavilions + elder suite.' },
+      { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'How a single tropical pavilion is structured: roof, walls, rooms, ventilation.' },
+      { src: '/concepts/interior2.jpg', title: 'Shared covered hall', desc: 'Central dining that keeps the compound feeling like one household.' },
     ],
     medium: [
-      { src: '/concepts/medium-4ac.jpg', title: 'Medium 4–5 acre courtyard', desc: '7 family pavilions + communal hall with generous garden and water feature.' },
-      { src: '/concepts/aerial.jpg', title: 'Courtyard cluster aerial', desc: 'Connected breezeways, security perimeter, elder suite at ground level.' },
+      { src: '/concepts/3d-medium.jpg', title: '3D Medium Model (4–5 ac)', desc: 'Isometric 3D view of 7 pavilions + central hall and water feature.' },
+      { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'Structural layers of a multi-generational tropical pavilion.' },
+      { src: '/concepts/aerial.jpg', title: 'Aerial context', desc: 'How the 3D cluster sits on the land with security wall and garden.' },
       { src: '/concepts/interior.jpg', title: 'Communal living', desc: 'Open-air central pavilion for shared meals.' },
-      { src: '/concepts/plan.jpg', title: 'Site plan', desc: 'Private wings + shared core + zero-step elder unit.' },
     ],
     large: [
-      { src: '/concepts/large-8ac.jpg', title: 'Large 8-acre linear spine', desc: 'Spacious layout with room for orchards, recreation, and future expansion.' },
-      { src: '/concepts/aerial2.jpg', title: 'Alternative cluster', desc: 'Still connected as one household, with more breathing room between pavilions.' },
-      { src: '/concepts/size-comparison.jpg', title: 'Size comparison', desc: 'How the same programme scales from 2 acres to 8 acres.' },
+      { src: '/concepts/3d-large.jpg', title: '3D Large Model (8 ac)', desc: 'Isometric 3D view of linear spine with expansion space and elder pavilion.' },
+      { src: '/concepts/3d-exploded.jpg', title: '3D Pavilion Exploded', desc: 'How individual pavilions are built and ventilated.' },
+      { src: '/concepts/large-8ac.jpg', title: 'Aerial of large layout', desc: 'Spacious site with orchards, recreation, and future growth area.' },
     ],
   };
   const items = sets[cat] || sets.medium;
@@ -156,7 +156,7 @@ function SizeAwareMockups({ size }) {
         </div>
       ))}
       <div className="concept-card" style={{ background: '#f8f9fa' }}>
-        <img src="/concepts/size-comparison.jpg" alt="Comparison" />
+        <img src="/concepts/3d-exploded.jpg" alt="3D Exploded" />
         <h3>All sizes compared</h3>
         <p>Compact (≤2.5 ac), Medium (2.5–5.5 ac), Large (>5.5 ac). Layouts stay linked so the compound reads as one household.</p>
       </div>

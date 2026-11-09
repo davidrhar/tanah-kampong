@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, Arial, sans-serif; }
+.app { display: flex; flex-direction: column; height: 100vh; }
+.map-container { height: 45vh; min-height: 300px; width: 100%; }
+.bottom { display: flex; flex: 1; overflow: hidden; border-top: 1px solid #ddd; }
+.list-panel { width: 380px; background: #f8f9fa; border-right: 1px solid #ddd; overflow-y: auto; padding: 12px; }
+.detail-panel { flex: 1; padding: 16px; overflow-y: auto; background: #fff; }
+h1 { font-size: 18px; margin: 0 0 8px; color: #2c3e50; }
+.rate-note { font-size: 12px; color: #666; margin: 0 0 10px; }
+.listing { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin-bottom: 10px; cursor: pointer; transition: box-shadow 0.2s; }
+.listing:hover, .listing.active { box-shadow: 0 2px 8px rgba(0,0,0,0.12); border-color: #3498db; }
+.listing h3 { margin: 0 0 6px; font-size: 15px; color: #2c3e50; }
+.meta { font-size: 13px; color: #555; margin: 2px 0; }
+.price { color: #e74c3c; font-weight: bold; }
+.size { color: #27ae60; font-weight: bold; }
+.dist { font-size: 12px; color: #666; margin-top: 6px; }
+.detail-panel h2 { margin-top: 0; color: #2c3e50; }
+.section { margin-bottom: 12px; }
+.label { font-weight: bold; color: #555; font-size: 13px; }
+.placeholder { color: #999; font-style: italic; padding: 40px 20px; text-align: center; }
+.btn { display: inline-block; margin-top: 12px; padding: 8px 14px; background: #3498db; color: white; text-decoration: none; border-radius: 6px; font-size: 14px; }
+.btn:hover { background: #2980b9; }

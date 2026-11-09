@@ -1,0 +1,50 @@
+export const MYR_TO_SGD = 0.3155;
+
+export const listings = [
+  { id: 1, name: "Puteri Harbour Seaside 2.22 ac", lat: 1.417, lng: 103.658, size: "2.22 acres", price: "RM 14.5M", psf: "~RM 150", tenure: "Freehold, international lot", zoning: "Residential (agri title)", utilities: "Electric + water available", notes: "Near Emerald Bay / seaside, rectangular, forest topo. Premium setting.", color: "#e74c3c", link: "https://www.edgeprop.my/listing/sale/3775762/johor/puteri_harbour/landed/residentialland/puteri-harbour-iskandar-puteri-nusajaya-johor-2.22-acres-zoning-residential-land-for-sale" },
+  { id: 2, name: "Tanjung Tebing Runtoh 2.3 ac", lat: 1.412, lng: 103.652, size: "2.3 acres", price: "RM 15.0M", psf: "RM 150", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Near Puteri Harbour. Rectangular.", color: "#e74c3c", link: "https://www.edgeprop.my/listing/sale/3764647/johor/landed/residentialland/2.3-acres-zoning-residential-agriculture-land-tanjung-tebing-runtoh-iskandar-puteri-johor" },
+  { id: 3, name: "Tanjung Kupang 2.2 ac (near 2nd Link)", lat: 1.362, lng: 103.598, size: "2.2 acres", price: "RM 4.79M", psf: "RM 50", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Behind 2nd Link CIQ apartments. Kurnia (consent needed).", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/2-2-acres-zoning-residential-apartment-land-tanjung-kupang-gelang-patah-johor-near-second-link-for-sale-by-joanne-yong-60151203" },
+  { id: 4, name: "Tanjung Kupang 2.44 ac", lat: 1.355, lng: 103.595, size: "2.44 acres", price: "RM 3.9M", psf: "~RM 37", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Palm oil. Zoning residential.", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/agriculture-land-for-sale-zoning-residential-tanjung-kupang-gelang-patah-johor-bahru-for-sale-by-kim-loh-42391535" },
+  { id: 5, name: "Tanjung Kupang 5.8 ac", lat: 1.348, lng: 103.592, size: "5.8 acres", price: "RM 7.6M", psf: "RM 30", tenure: "Freehold, international", zoning: "Residential", utilities: "Power & water ready", notes: "Facing main road, fruit trees, near PTP / Second Link / Forest City.", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/tanjung-kupang-for-sale-by-jessie-tan-501915245" },
+  { id: 6, name: "Beside Second Link 4 ac", lat: 1.370, lng: 103.605, size: "4 acres", price: "RM 8.71M", psf: "RM 50", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Beside Second Link Tuas. Strategic for compound.", color: "#3498db", link: "https://www.edgeprop.my/listing/sale/4114330/johor/nusajaya/landed/residentialland/beside-second-link-tuas-4acres-residential-land-for-sale" },
+  { id: 7, name: "Kempas Lama 8.1 ac", lat: 1.540, lng: 103.694, size: "8.1 acres", price: "RM 9.17M", psf: "RM 26", tenure: "Freehold", zoning: "Residential", utilities: "Reachable", notes: "Rectangular. Near Kempas Toll / Seelong. Larger space, farther from border.", color: "#2ecc71", link: "https://www.propertyguru.com.my/property-listing/8-1-acres-zoning-residential-land-kempas-lama-jb-near-seelong-tmn-perindustrian-berjaya-kempas-toll-for-sale-by-joanne-yong-43266794" },
+  { id: 8, name: "Tanjung Kupang 2.7 ac (river)", lat: 1.352, lng: 103.588, size: "2.72 acres", price: "RM 1.90M", psf: "RM 16", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Small river through land. Value buy.", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/tanjung-kupang-for-sale-by-mark-mah-500912345" },
+  { id: 9, name: "Gelang Patah 2.65 ac residential", lat: 1.365, lng: 103.610, size: "2.65 acres", price: "RM 2.08M", psf: "RM 18", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Near Kampung Pok Besar / PTP.", color: "#3498db", link: "https://www.edgeprop.my/listing/sale/4100001/johor/gelang_patah/landed/residentialland/gelang-patah-2.65-acres-zoning-residential-land-for-sale" },
+  { id: 10, name: "Kempas Lama ~8 ac (similar)", lat: 1.538, lng: 103.690, size: "8 acres", price: "RM 9.06M", psf: "RM 26", tenure: "Freehold", zoning: "Residential", utilities: "Reachable", notes: "Comparable larger plot near Kempas Toll.", color: "#2ecc71", link: "https://www.edgeprop.my/listing/sale/3391494/johor/johor_bahru/landed/residentialland/johor-kempas-lama-8-acres-residential-land-for-sale" },
+  { id: 11, name: "Tanjung Kupang 2 ac zoning res", lat: 1.358, lng: 103.602, size: "2 acres", price: "RM 2.9M", psf: "~RM 33", tenure: "Freehold international", zoning: "Residential", utilities: "To apply", notes: "Facing tar road, beside leisure bungalow.", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/tanjung-kupang-for-sale-by-suzanne-lee-500950471" },
+  { id: 12, name: "Tanjung Kupang 2 ac (Bukit Kucing)", lat: 1.350, lng: 103.600, size: "2 acres", price: "RM 10.78M", psf: "RM 124", tenure: "Freehold", zoning: "Residential", utilities: "Not specified", notes: "Zoning residential agriculture land.", color: "#3498db", link: "https://www.propertyguru.com.my/property-listing/tanjung-kupang-zoning-residential-land-for-sale-by-janet-tan-42434629" },
+  { id: 13, name: "Mukim Tanjung Kupang 4 ac", lat: 1.345, lng: 103.585, size: "4 acres", price: "RM 5.23M", psf: "RM 30", tenure: "Freehold", zoning: "Agricultural", utilities: "Not specified", notes: "Near PTP / Forest City / Second Link.", color: "#3498db", link: "https://www.edgeprop.my/listing/sale/3428282/johor/gelang_patah/commercial/agriculturalland/mukim-tanjung-kupang-johor-bahru-4-acres-agricultural-land-for-sale" },
+  { id: 14, name: "Gelang Patah near PTP 2.25 ac", lat: 1.340, lng: 103.575, size: "2.25 acres", price: "RM 12.0M", psf: "RM 122", tenure: "Freehold international", zoning: "Industrial (agri title)", utilities: "Not specified", notes: "Main road frontage, close to PTP.", color: "#3498db", link: "https://www.edgeprop.my/listing/sale/4243435/johor/gelang_patah/commercial/agriculturalland/gelang-patah-agriculture-land-for-sale-near-ptp-pelabuhan-tanjung-pelepas-tanjung-kupang-paya-mengkuang-ledang-heights-iskandar-puteri-medini" },
+  { id: 15, name: "Tanjung Kupang 3.8 ac (Pekajang)", lat: 1.348, lng: 103.580, size: "3.8 acres", price: "RM 6.3M", psf: "RM 38", tenure: "Freehold international", zoning: "Industrial", utilities: "Not specified", notes: "Rectangular, fruit trees, near PTP and Second Link.", color: "#3498db", link: "https://www.edgeprop.my/listing/sale/1853355/johor/johor_bahru/commercial/agriculturalland/-price-drop--freehold-land--3.8-acres-agriculture-land---kampung-pekajang--tanjung-kupang--gelang-patah---zoning-industri" }
+];
+
+export function toSGD(rmString) {
+  const num = parseFloat(rmString.replace(/[^0-9.]/g, '')) || 0;
+  const sgd = (num * MYR_TO_SGD).toFixed(2);
+  return `S$${sgd}M`;
+}
+
+export function haversine(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
+  return (2 * R * Math.asin(Math.sqrt(a))).toFixed(1);
+}
+
+export function approxPolygon(lat, lng, acres) {
+  const areaM2 = acres * 4047;
+  const side = Math.sqrt(areaM2);
+  const half = side / 2;
+  const dLat = half / 111320;
+  const dLng = half / (111320 * Math.cos(lat * Math.PI / 180));
+  return [
+    [lat - dLat, lng - dLng],
+    [lat - dLat, lng + dLng],
+    [lat + dLat, lng + dLng],
+    [lat + dLat, lng - dLng]
+  ];
+}
+
+export const SECOND_LINK = [1.378, 103.596];
+export const CAUSEWAY = [1.465, 103.766];

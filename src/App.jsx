@@ -35,7 +35,7 @@ export default function App() {
             <div className="bottom">
               <div className="list-panel">
                 <h1>Land Candidates (2+ acres)</h1>
-                <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details. Double-click for architecture mockups.</p>
+                <p className="rate-note">Prices in SGD (rate: 1 MYR = 0.3155 SGD). Original RM in parentheses. Click a listing for details. Double-click for size-specific concepts. Non-locals: prefer residential-zoned / international lots (RM1M+ with state consent). Agricultural titles restricted.</p>
                 <div id="listings">
                   {listings.map(l => {
                     const distSL = haversine(l.lat, l.lng, SECOND_LINK[0], SECOND_LINK[1]);

@@ -22,7 +22,7 @@ export default function Method() {
           <li><b>Exact locations.</b> Most listings name a road or kampung, not a lot. Pins sit at that name's centre, and the real plot can be a kilometre or more away. Footprint circles are drawn only for exact pins, and the shape is not known.</li>
           <li><b>Availability.</b> These are asking prices from public listings on the date shown. Land listings stay up long after they sell, and agents re-list the same land, so some rows may be duplicates.</li>
           <li><b>Value.</b> There are no transaction prices here (JPPH/NAPIC data is paid). psf shows what sellers ask, not what land sells for.</li>
-          <li><b>Planning.</b> “Zoning” is what the listing claims. It often differs from the category on the title (an agricultural title in a residential zone is common). Check the local plan (<i>Rancangan Tempatan</i>) with the council (MBIP, MBJB, MPKu).</li>
+          <li><b>Planning.</b> “Zoning” is what the listing claims. It often differs from the category on the title (an agricultural title in a residential zone is common). “Zoning not stated” means the listing names only the title, usually agricultural. The land may still be zoned residential. Check the local plan (<i>Rancangan Tempatan</i>) with the council (MBIP, MBJB, MPKu).</li>
         </ul>
         <h2>How the combination leads work</h2>
         <ul>{Object.values(EVIDENCE).map((e) => <li key={e.label}><b>{e.label}.</b> {e.hint}</li>)}</ul>

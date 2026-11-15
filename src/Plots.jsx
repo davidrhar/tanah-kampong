@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import MapView, { ZONE_COLOUR, EV_COLOUR } from './MapView.jsx';
 import Detail from './Detail.jsx';
-import { plots, distinct, psf, nearestCrossing, foreigner, memberOf, fmtAcres, fmtRM, fmtSGD, fmtPsf, ZONING_LABEL, PREC_LABEL, EVIDENCE } from './model.js';
+import { plots, distinct, psf, nearestCrossing, foreigner, memberOf, fmtAcres, fmtRM, fmtSGD, fmtPsf, ZONING_LABEL, ZONING_HINT, PREC_LABEL, EVIDENCE } from './model.js';
 
 const ZONES = ['residential', 'agricultural', 'industrial', 'commercial', 'mixed', 'unknown'];
 const median = (xs) => { const s = xs.filter((x) => x != null).sort((a, b) => a - b); return s.length ? s[Math.floor(s.length / 2)] : null; };
@@ -69,7 +69,7 @@ export default function Plots({ rate, target, groups, selectedId, setSelectedId,
           <div>
             <h3>Zoning</h3>
             {ZONES.filter((z) => counts[z]).map((z) => (
-              <label key={z}><input type="checkbox" checked={zones.has(z)} onChange={() => toggleZone(z)} /><span className="sw" style={{ background: ZONE_COLOUR[z] }} />{ZONING_LABEL[z]}<span className="cnt">{counts[z]}</span></label>
+              <label key={z} title={z === 'unknown' ? ZONING_HINT : undefined}><input type="checkbox" checked={zones.has(z)} onChange={() => toggleZone(z)} /><span className="sw" style={{ background: ZONE_COLOUR[z] }} />{ZONING_LABEL[z]}<span className="cnt">{counts[z]}</span></label>
             ))}
           </div>
           <div className="rowf"><span>Min size (acres)</span><input type="number" min="0" step="0.5" value={minAcres} onChange={(e) => setMinAcres(Number(e.target.value) || 0)} /></div>
@@ -105,7 +105,7 @@ export default function Plots({ rate, target, groups, selectedId, setSelectedId,
                       <td className="r">{fmtAcres(p.acres)}</td>
                       <td className="r">{fmtSGD(p.priceRM, rate)}<div className="muted" style={{ fontSize: 11 }}>{fmtRM(p.priceRM)}</div></td>
                       <td className="r">{fmtPsf(psf(p))}</td>
-                      <td><span className={`zn ${p.zoning || 'unknown'}`}>{ZONING_LABEL[p.zoning || 'unknown']}</span></td>
+                      <td><span className={`zn ${p.zoning || 'unknown'}`} title={(p.zoning || 'unknown') === 'unknown' ? ZONING_HINT : undefined}>{ZONING_LABEL[p.zoning || 'unknown']}</span></td>
                       <td className="r">{nc ? `${nc.d.toFixed(0)} km` : '—'}<div className="muted" style={{ fontSize: 11 }}>{nc?.short}</div></td>
                       <td><span className={`prec ${p.locPrecision}`}>{PREC_LABEL[p.locPrecision] || '—'}</span></td>
                     </tr>

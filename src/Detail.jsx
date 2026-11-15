@@ -1,4 +1,4 @@
-import { LANDMARKS, km, hasPin, psf, foreigner, fmtAcres, fmtSqft, fmtSqm, fmtRM, fmtSGD, fmtPsf, ZONING_LABEL, PREC_LABEL, EVIDENCE, plots } from './model.js';
+import { LANDMARKS, km, hasPin, psf, foreigner, fmtAcres, fmtSqft, fmtSqm, fmtRM, fmtSGD, fmtPsf, ZONING_LABEL, ZONING_HINT, PREC_LABEL, EVIDENCE, plots } from './model.js';
 
 const FOREIGN_TONE = { likely: 'under', verify: 'agent', no: 'over', unknown: 'unclear' };
 const TITLE_LABEL = { agricultural: 'Agricultural title', residential: 'Residential title', industrial: 'Industrial title', commercial: 'Commercial title', building: 'Building title', unknown: 'Title not stated' };
@@ -13,7 +13,9 @@ export default function Detail({ plot: p, rate, groups, onSelect }) {
         <span className="eyebrow">{[p.locality, p.mukim && `Mukim ${p.mukim}`, p.district].filter(Boolean).join(' · ') || 'Location from listing title'}</span>
         <h2 style={{ marginTop: 4 }}>{p.title}</h2>
         <div className="facts">
-          <span className={`zn ${p.zoning || 'unknown'}`}>{ZONING_LABEL[p.zoning || 'unknown']} zoning</span>
+          {(p.zoning || 'unknown') === 'unknown'
+            ? <span className="zn unknown" title={ZONING_HINT} style={{ cursor: 'help' }}>Zoning not stated</span>
+            : <span className={`zn ${p.zoning}`}>{ZONING_LABEL[p.zoning]} zoning</span>}
           <span className="chip">{TITLE_LABEL[p.titleType || 'unknown']}</span>
           {p.tenure && <span className="chip">{p.tenure}</span>}
           {p.international && <span className="chip"><b>International lot</b></span>}

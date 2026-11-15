@@ -36,7 +36,8 @@ export const fmtRM = (v) => (v == null ? '—' : v >= 1e6 ? `RM ${(v / 1e6).toFi
 export const fmtSGD = (v, rate) => (v == null ? '—' : v * rate >= 1e6 ? `S$${((v * rate) / 1e6).toFixed(2)}M` : `S$${Math.round((v * rate) / 1e3)}k`);
 export const fmtPsf = (v) => (v == null ? '—' : `RM ${v < 10 ? v.toFixed(1) : Math.round(v)}`);
 
-export const ZONING_LABEL = { residential: 'Residential', agricultural: 'Agricultural', industrial: 'Industrial', commercial: 'Commercial', mixed: 'Mixed', unknown: 'Unknown' };
+export const ZONING_LABEL = { residential: 'Residential', agricultural: 'Agricultural', industrial: 'Industrial', commercial: 'Commercial', mixed: 'Mixed', unknown: 'Not stated' };
+export const ZONING_HINT = 'The listing gives only the title (usually agricultural), not the zoning in the local plan. Ask the agent, or check with the council (MBIP, MBJB, MPKu): residential zoning means the title can be converted for houses.';
 export const PREC_LABEL = { exact: 'Exact', road: 'Road', area: 'Town' };
 
 // Foreign ownership: international lot + residential or building title is the only clear case.

@@ -1,13 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Johor Compound Land Candidates – Map & Listings</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tanah Kampong</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // A page restored from before a deploy points at build files that no longer exist: reload once.
+    addEventListener('error', function (e) {
+      var src = e.target && e.target.src;
+      if (!src || src.indexOf('/assets/') < 0) return;
+      try { if (sessionStorage.getItem('kampong-reloaded')) return; sessionStorage.setItem('kampong-reloaded', '1'); } catch (_) {}
+      location.reload();
+    }, true);
+    addEventListener('load', function () { setTimeout(function () { try { sessionStorage.removeItem('kampong-reloaded'); } catch (_) {} }, 10000); });
+  </script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>

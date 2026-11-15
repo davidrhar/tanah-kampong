@@ -1,0 +1,10 @@
+{
+ "_why": "Hand corrections applied after every merge. Each entry says why.",
+ "L10": { "dupOf": "L07", "_why": "Kempas Lama ~8 ac at RM26 psf: likely the same land as the 8.1 ac listing, other agent" },
+ "L28": { "dupOf": "L07", "_why": "Same 8.1 ac, RM9.17M, Kempas Lama" },
+ "L34": { "dupOf": "L27", "_why": "Same 2 ac, RM3.96M, Tanjung Kupang" },
+ "C03": { "dupOf": "A19", "package": true, "_why": "Whole Kempas Tebrau package (Lot 2941 + Lot 755), already held as A19 + A20" },
+ "A32": { "groupHint": null, "_why": "One seller, three lots, but the listing does not say they adjoin: a same-road lead, not a seller claim" },
+ "A33": { "groupHint": null, "_why": "as A32" },
+ "A34": { "groupHint": null, "_why": "as A32" }
+}

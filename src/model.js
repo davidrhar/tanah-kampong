@@ -4,7 +4,7 @@ import plotsData from '../data/plots.json';
 export const plots = plotsData;
 export const SQFT_PER_ACRE = 43560;
 export const SQM_PER_ACRE = 4046.86;
-export const DEFAULT_RATE = 0.3155; // SGD per MYR; user-editable in the top bar
+export const DEFAULT_RATE = 0.3151; // SGD per MYR: fallback only, used until /api/fx answers (ECB reference 13 Nov 2026)
 
 export const LANDMARKS = [
   { key: 'sl', name: 'Second Link CIQ', short: '2nd Link', at: [1.3778, 103.5964] }, // Sultan Abu Bakar Complex
